@@ -14,15 +14,19 @@
     <h2>Member Registration</h2>
     <p>Enforces annotation-based constraints defined on the model class.</p>
     <form th:action="@{/register}" th:method="post" id="reg" th:object="${newMember}">
-        <div>
+        <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" id="name" th:field="*{name}" />
             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Name Error</span>
+        </div>
 
+        <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" th:field="*{email}" />
             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Email Error</span>
+        </div>
 
+        <div class="form-group">
             <label for="phoneNumber">Phone #:</label>
             <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
             <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error">Phone Number Error</span>

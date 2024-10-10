@@ -15,6 +15,11 @@ This project is a Spring Boot application that demonstrates various features inc
 - Maven 3.6 or higher
 - Spring Boot 3.1.5 or higher
 
+## Clone repo and edit source code
+
+- Checkout code from it's root folder
+- I've used IntelliJ CE, and run directly as a Spring Boot App
+
 ## Getting Started
 
 
@@ -47,8 +52,18 @@ This project is a Spring Boot application that demonstrates various features inc
   - `templates`: Thymeleaf HTML templates
   - `static`: CSS and other static files
 
-## Key Components
+## REST Endpoints
 
-### MemberController
+To manually test all the endpoints exposed in your application, you can use tools like cURL, Postman, or even your web browser for GET requests. Based on the provided code, here are examples:
 
-Handles member registration and form submission.
+List all members (GET request):
+
+curl http://localhost:8080/kitchensink/members
+
+Register a new member (POST request):
+
+curl -X POST -H "Content-Type: application/json" -d '{"name":"John Doe","email":"john@example.com","phoneNumber":"1234567890"}' http://localhost:8080/kitchensink/members
+
+Get a specific member by ID (GET request):
+
+curl http://localhost:8080/kitchensink/members/1
