@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome to JBoss!</title>
+    <link rel="stylesheet" th:href="@{/css/screen.css}" />
+</head>
+<body>
+    <h1>Welcome to Migrated JBoss!</h1>
+    <div>
+        <p>You have successfully deployed a Jakarta EE Enterprise Application.</p>
+    </div>
+    </div>
+    <!-- Member Registration Form -->
+    <h2>Member Registration</h2>
+    <p>Enforces annotation-based constraints defined on the model class.</p>
+    <form th:action="@{/register}" th:method="post" id="reg" th:object="${newMember}">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Name Error</span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" />
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">Email Error</span>
+
+            <label for="phoneNumber">Phone #:</label>
+            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" />
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error">Phone Number Error</span>
+        </div>
+
+        <input type="submit" value="Register" class="register"/>
+    </form>
+
+    <h2>Members List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="member : ${members}">
+            <td th:text="${member.name}">John Doe</td>
+            <td th:text="${member.email}">john@example.com</td>
+            <td th:text="${member.phoneNumber}">123-456-7890</td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
