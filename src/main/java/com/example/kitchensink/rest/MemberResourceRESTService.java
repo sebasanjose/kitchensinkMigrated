@@ -52,18 +52,14 @@ public class MemberResourceRESTService {
         try {
             registration.register(member);
 
-            // Create an "ok" response
             responseEntity = new ResponseEntity<>(HttpStatus.OK);
         } catch (ConstraintViolationException ce) {
-            // Handle bean validation issues
             responseEntity = createViolationResponse(ce.getConstraintViolations());
         } catch (ValidationException e) {
-            // Handle unique constraint violations
             Map<String, String> responseObj = new HashMap<>();
             responseObj.put("email", "Email taken");
             responseEntity = new ResponseEntity<>(responseObj, HttpStatus.CONFLICT);
         } catch (Exception e) {
-            // Handle generic exceptions
             Map<String, String> responseObj = new HashMap<>();
             responseObj.put("error", e.getMessage());
             responseEntity = new ResponseEntity<>(responseObj, HttpStatus.BAD_REQUEST);
@@ -84,13 +80,5 @@ public class MemberResourceRESTService {
         return new ResponseEntity<>(responseObj, HttpStatus.BAD_REQUEST);
     }
 
-    public boolean emailAlreadyExists(String email) {
-        Member member = null;
-        try {
-            member = repository.findByEmail(email);
-        } catch (NoResultException e) {
-            // Ignore
-        }
-        return member != null;
-    }
+
 }
