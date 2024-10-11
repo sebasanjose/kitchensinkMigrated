@@ -6,10 +6,13 @@ import com.example.kitchensink.model.Member;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+
 import java.util.List;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface MemberRepository extends MongoRepository<Member, Long> {
 
     // Custom method using a query to find a member by email
     @Query("SELECT m FROM Member m WHERE m.email = :email")

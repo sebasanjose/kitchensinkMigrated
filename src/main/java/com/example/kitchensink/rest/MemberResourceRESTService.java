@@ -38,7 +38,7 @@ public class MemberResourceRESTService {
     }
 
     @GetMapping("/{id:[0-9][0-9]*}")
-    public ResponseEntity<Member> lookupMemberById(@PathVariable("id") long id) {
+    public ResponseEntity<Member> lookupMemberById(@PathVariable("id") Long id) {
         Optional<Member> member = repository.findById(id);
         return member.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
